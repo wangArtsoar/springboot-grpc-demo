@@ -1,0 +1,28 @@
+syntax="proto3";
+
+package com.example;
+
+option java_multiple_files=true;
+
+service GreetingService {
+  rpc greeting(GreetingRequest) returns (GreetingResponse);
+  rpc greetingServerStream(GreetingRequestList) returns (stream GreetingResponse);
+  rpc greetingClientStream(stream GreetingRequest) returns (GreetingResponseList);
+  rpc greetingBidirectionalStream(stream GreetingRequest) returns (stream GreetingResponse);
+}
+
+message GreetingRequest{
+  string name = 1;
+}
+
+message GreetingResponse{
+  string message = 1;
+}
+
+message GreetingRequestList{
+  repeated string nameList = 1;
+}
+
+message GreetingResponseList{
+  repeated string messageList = 1;
+}
